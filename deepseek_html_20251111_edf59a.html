@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Κεφάλαιο 3: Επεξεργασία και Συσκευασία Αγροτικών Προϊόντων</title>
+    <style>
+        :root {
+            --primary-color: #388e3c;
+            --secondary-color: #4caf50;
+            --accent-color: #ffa000;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .page {
+            display: none;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            min-height: 600px;
+        }
+        
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            border: 1px solid #eaeaea;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.2rem;
+            text-align: center;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+            text-align: center;
+        }
+        
+        .examples {
+            background-color: var(--light-color);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .examples h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .examples ul {
+            padding-left: 1.5rem;
+        }
+        
+        .examples li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .comparison {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            color: #6c757d;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        
+        .step {
+            flex: 0 0 18%;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .step-number {
+            background-color: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            font-weight: bold;
+        }
+        
+        .step-text {
+            font-size: 0.9rem;
+        }
+        
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .benefit-item {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .case-study {
+            background-color: #f0f7ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .case-study h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-box {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            margin: 1rem 0;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .standard-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .standard-type {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        .traceability-matrix {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .traceability-category {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .recall-stages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .recall-stage {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .committee-table {
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+        
+        .flow-diagram {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .flow-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .flow-arrow {
+            margin: 0 1rem;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .packaging-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .packaging-type {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-top: 4px solid var(--secondary-color);
+        }
+        
+        .processing-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .processing-method {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+            }
+            
+            .step {
+                flex: 0 0 100%;
+                margin-bottom: 1.5rem;
+            }
+            
+            .traceability-matrix {
+                grid-template-columns: 1fr;
+            }
+            
+            .flow-step {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .flow-arrow {
+                transform: rotate(90deg);
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Κεφάλαιο 3: Επεξεργασία και Συσκευασία Αγροτικών Προϊόντων</h1>
+            <p class="subtitle">Μια εκτεταμένη διαδραστική ανασκόπηση των μεθόδων επεξεργασίας και συσκευασίας αγροτικών προϊόντων</p>
+        </header>
+        
+        <!-- Σελίδα 1: Βασικές Αρχές Επεξεργασίας -->
+        <div class="page active" id="page1">
+            <h2>Σελίδα 1: Βασικές Αρχές Επεξεργασίας Αγροτικών Προϊόντων</h2>
+            
+            <div class="intro">
+                <p>Η <strong>επεξεργασία αγροτικών προϊόντων</strong> περιλαμβάνει το σύνολο των τεχνικών και τεχνολογικών μεθόδων που εφαρμόζονται για τη μετατροπή των πρώτων υλών σε προϊόντα έτοιμα για κατανάλωση ή περαιτέρω χρήση.</p>
+                
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <div class="stat-number">40%</div>
+                        <div class="stat-label">Απώλεια Τροφίμων χωρίς Επεξεργασία</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">12-24</div>
+                        <div class="stat-label">Μήνες Διάρκειας Ζωής</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">85%</div>
+                        <div class="stat-label">Περισσότερη Διαθεσιμότητα Θρεπτικών Στοιχείων</div>
+                    </div>
+                </div>
+                
+                <h3>Στόχοι Επεξεργασίας Αγροτικών Προϊόντων</h3>
+                <div class="case-study">
+                    <h4>"Αύξηση Διάρκειας Ζωής - Βελτίωση Ποιότητας - Μείωση Απωλειών"</h4>
+                    <p>Οι βασικοί στόχοι της επεξεργασίας αγροτικών προϊόντων είναι η αύξηση της διάρκειας ζωής, η βελτίωση της ποιότητας, η μείωση των απωλειών και η προσθήκη αξίας στα προϊόντα.</p>
+                </div>
+                
+                <h3>Κύριοι Τομείς Επεξεργασίας</h3>
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <h4>Συντήρηση</h4>
+                        <p>Μείωση ή εξάλειψη μικροβιακής δραστηριότητας για παράταση διάρκειας ζωής</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4>Μεταποίηση</h4>
+                        <p>Μετατροπή πρώτων υλών σε προϊόντα με διαφορετικές ιδιότητες και χρήσεις</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4>Προσθήκη Αξίας</h4>
+                        <p>Βελτίωση της θρεπτικής αξίας, της γεύσης ή της ελκυστικότητας των προϊόντων</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4>Συσκευασία</h4>
+                        <p>Προστασία, διατήρηση και προβολή των προϊόντων προς τον καταναλωτή</p>
+                    </div>
+                </div>
+                
+                <h3>Σημαντικές Αρχές Επεξεργασίας</h3>
+                <div class="examples">
+                    <ul>
+                        <li><strong>Ασφάλεια Τροφίμων:</strong> Οι μέθοδοι επεξεργασίας πρέπει να εξασφαλίζουν την ασφάλεια των προϊόντων για κατανάλωση</li>
+                        <li><strong>Διατήρηση Θρεπτικών Στοιχείων:</strong> Η επεξεργασία πρέπει να διατηρεί ή να βελτιώνει τη θρεπτική αξία των προϊόντων</li>
+                        <li><strong>Βιωσιμότητα:</strong> Οι μέθοδοι πρέπει να είναι περιβαλλοντικά βιώσιμες και οικονομικά αποδοτικές</li>
+                        <li><strong>Ποιότητα:</strong> Η επεξεργασία πρέπει να διατηρεί ή να βελτιώνει τα οργανοληπτικά χαρακτηριστικά των προϊόντων</li>
+                    </ul>
+                </div>
+                
+                <h3>Κύριες Κατηγορίες Επεξεργασίας</h3>
+                <div class="standard-types">
+                    <div class="standard-type">
+                        <h4>Φυσική Επεξεργασία</h4>
+                        <p>Μέθοδοι που βασίζονται σε φυσικές διεργασίες όπως θέρμανση, ψύξη, ξήρανση, πίεση και φιλτράρισμα.</p>
+                    </div>
+                    <div class="standard-type">
+                        <h4>Χημική Επεξεργασία</h4>
+                        <p>Μέθοδοι που περιλαμβάνουν χημικές αντιδράσεις όπως ζύμωση, ωρίμανση, προσθήκη συντηρητικών και οξίνιση.</p>
+                    </div>
+                    <div class="standard-type">
+                        <h4>Βιολογική Επεξεργασία</h4>
+                        <p>Μέθοδοι που χρησιμοποιούν μικροοργανισμούς ή ένζυμα για τη μετατροπή των πρώτων υλών σε τελικά προϊόντα.</p>
+                    </div>
+                    <div class="standard-type">
+                        <h4>Μηχανική Επεξεργασία</h4>
+                        <p>Μέθοδοι που περιλαμβάνουν μηχανικές διεργασίες όπως άλεση, κοπή, συμπίεση και ανάμιξη.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <div></div>
+                <button class="btn" onclick="showPage(2)">Επόμενη Σελίδα →</button>
+            </div>
+        </div>
+        
+        <!-- Σελίδα 2: Μέθοδοι Επεξεργασίας -->
+        <div class="page" id="page2">
+            <h2>Σελίδα 2: Μέθοδοι Επεξεργασίας Αγροτικών Προϊόντων</h2>
+            
+            <h3>Κύριες Μέθοδοι Συντήρησης</h3>
+            <p>Οι μέθοδοι συντήρησης αποσκοπούν στην παράταση της διάρκειας ζωής των αγροτικών προϊόντων με την καταστολή ή εξάλειψη των μικροοργανισμών και των ενζύμων που προκαλούν αλλοίωση.</p>
+            
+            <div class="processing-methods">
+                <div class="processing-method">
+                    <h4>Θερμική Επεξεργασία</h4>
+                    <ul>
+                        <li><strong>Παστερίωση:</strong> Θέρμανση στους 60-85°C για καταστολή παθογόνων μικροοργανισμών</li>
+                        <li><strong>Στείρωση:</strong> Θέρμανση στους 110-121°C για πλήρη εξάλειψη μικροοργανισμών</li>
+                        <li><strong>Μπλάνσαρης:</strong> Βραχυπρόθεσμη θέρμανση για απενεργοποίηση ενζύμων</li>
+                        <li><strong>Ψήσιμο/Τηγάνισμα:</strong> Θερμική επεξεργασία για βελτίωση γεύσης και υφής</li>
+                    </ul>
+                </div>
+                
+                <div class="processing-method">
+                    <h4>Ψύξη και Παγώσιμο</h4>
+                    <ul>
+                        <li><strong>Ψύξη:</strong> Διατήρηση στους 0-5°C για επιβράδυνση μικροβιακής ανάπτυξης</li>
+                        <li><strong>Παγώσιμο:</strong> Διατήρηση στους -18°C για πλήρη διακοπή βιολογικών διεργασιών</li>
+                        <li><strong>Υπερψύξη:</strong> Ταχεία ψύξη για αποφυγή σχηματισμού μεγάλων κρυστάλλων πάγου</li>
+                        <li><strong>Κρυογονική Συντήρηση:</strong> Χρήση υπερβολικά χαμηλών θερμοκρασιών (-80°C και κάτω)</li>
+                    </ul>
+                </div>
+                
+                <div class="processing-method">
+                    <h4>Ξήρανση και Αφυδάτωση</h4>
+                    <ul>
+                        <li><strong>Φυσική Ξήρανση:</strong> Αποξήρανση με ηλιακή ακτινοβολία ή αέρα</li>
+                        <li><strong>Μηχανική Ξήρανση:</strong> Χρήση ειδικών ξηραντηρίων σε ελεγχόμενες συνθήκες</li>
+                        <li><strong>Ψυχρή Ξήρανση:</strong> Αφυδάτωση με ψύξη και εμφύσηση</li>
+                        <li><strong>Ξήρανση με ψεκασμό:</strong> Ταχεία αποξήρανση υγρών υλικών με ψεκασμό σε θερμό αέρα</li>
+                    </ul>
+                </div>
+                
+                <div class="processing-method">
+                    <h4>Χημική Συντήρηση</h4>
+                    <ul>
+                        <li><strong>Προσθήκη Αλατιού:</strong> Μείωση της διαθέσιμης νερού για μικροοργανισμούς</li>
+                        <li><strong>Προσθήκη Ζάχαρης:</strong> Δημιουργία οσμωτικής πίεσης για αφυδάτωση μικροοργανισμών</li>
+                        <li><strong>Οξίνιση:</strong> Μείωση του pH για καταστολή μικροβιακής ανάπτυξης</li>
+                        <li><strong>Προσθήκη Συντηρητικών:</strong> Χρήση χημικών ουσιών για καταστολή μικροοργανισμών</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Μέθοδοι Μεταποίησης</h3>
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🍞</span>
+                        <h4>Άλεση και Επεξεργασία Δημητριακών</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Μετατροπή δημητριακών σε αλεύρι, πλιγούρι και άλλα παραγωγικά προϊόντα.</p>
+                        <div class="examples">
+                            <h5>Βασικές Διεργασίες:</h5>
+                            <ul>
+                                <li>Καθαρισμός και ταξινόμηση</li>
+                                <li>Υγρανσία και απόσταξη</li>
+                                <li>Άλεση και διαχωρισμός</li>
+                                <li>Πλούτιση και ενίσχυση</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🥫</span>
+                        <h4>Εκχύλιση και Συμπύκνωση</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Απομόνωση συστατικών και παραγωγή συμπυκνωμένων προϊόντων.</p>
+                        <div class="examples">
+                            <h5>Εφαρμογές:</h5>
+                            <ul>
+                                <li>Παραγωγή χυμών και ποτών</li>
+                                <li>Εκχύλιση ελαίων και λιπαρών ουσιών</li>
+                                <li>Παραγωγή σάλτσων και πολτών</li>
+                                <li>Συμπύκνωση γάλακτος και άλλων υγρών</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🧀</span>
+                        <h4>Ζύμωση και Ωρίμανση</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Χρήση μικροοργανισμών για τη μετατροπή πρώτων υλών σε νέα προϊόντα.</p>
+                        <div class="examples">
+                            <h5>Παραδείγματα:</h5>
+                            <ul>
+                                <li>Παραγωγή τυριών και γιαουρτιών</li>
+                                <li>Ζύμωση προϊόντων από δημητριακά</li>
+                                <li>Παραγωγή αλκοολούχων ποτών</li>
+                                <li>Ωρίμανση κρεάτων και αλλαντικών</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Σύγχρονες Τεχνολογίες Επεξεργασίας</h3>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <h4>Υψηλής Πίεσης (HPP)</h4>
+                    <p>Χρήση υψηλής πίεσης για την καταστολή μικροοργανισμών με ελάχιστη θερμική επεξεργασία.</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>Παλμικό Ηλεκτρικό Πεδίο (PEF)</h4>
+                    <p>Εφαρμογή ηλεκτρικών παλμών για την απενεργοποίηση μικροοργανισμών.</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>Υπερήχοι Υψηλής Έντασης</h4>
+                    <p>Χρήση υπερήχων για την απενεργοποίηση μικροοργανισμών και ενζύμων.</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>Ακτινοβολία</h4>
+                    <p>Εκτέθειση σε ιονίζουσα ακτινοβολία για την εξάλειψη μικροοργανισμών και παρασίτων.</p>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="btn btn-secondary" onclick="showPage(1)">← Προηγούμενη Σελίδα</button>
+                <button class="btn" onclick="showPage(3)">Επόμενη Σελίδα →</button>
+            </div>
+        </div>
+        
+        <!-- Σελίδα 3: Συσκευασία Αγροτικών Προϊόντων -->
+        <div class="page" id="page3">
+            <h2>Σελίδα 3: Συσκευασία Αγροτικών Προϊόντων</h2>
+            
+            <h3>Στόχοι και Λειτουργίες Συσκευασίας</h3>
+            <p>Η συσκευασία αποτελεί ουσιαστικό στοιχείο της επεξεργασίας αγροτικών προϊόντων και εξυπηρετεί πολλαπλούς στόχους.</p>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🛡️</span>
+                        <h4>Προστασία</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Προστασία των προϊόντων από μηχανικές βλάβες, μικροοργανισμούς και περιβαλλοντικές επιδράσεις.</p>
+                        <div class="examples">
+                            <h5>Συγκεκριμένοι Στόχοι:</h5>
+                            <ul>
+                                <li>Προστασία από φυσικές βλάβες</li>
+                                <li>Αποφυγή μικροβιακής μόλυνσης</li>
+                                <li>Προστασία από υγρασία και οξυγόνο</li>
+                                <li>Αποφυγή φωτοοξειδωτικών αντιδράσεων</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">📦</span>
+                        <h4>Διατήρηση</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Διατήρηση της ποιότητας και της ασφάλειας των προϊόντων κατά τη διάρκεια της αποθήκευσης και μεταφοράς.</p>
+                        <div class="examples">
+                            <h5>Συγκεκριμένοι Στόχοι:</h5>
+                            <ul>
+                                <li>Διατήρηση της φρεσκάδας</li>
+                                <li>Παράταση διάρκειας ζωής</li>
+                                <li>Διατήρηση θρεπτικών συστατικών</li>
+                                <li>Διατήρηση οργανοληπτικών χαρακτηριστικών</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🏪</span>
+                        <h4>Προβολή και Πώληση</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Προβολή των προϊόντων προς τον καταναλωτή και διευκόλυνση της πώλησης.</p>
+                        <div class="examples">
+                            <h5>Συγκεκριμένοι Στόχοι:</h5>
+                            <ul>
+                                <li>Ελκυστική παρουσίαση</li>
+                                <li>Πληροφόρηση καταναλωτή</li>
+                                <li>Διευκόλυνση χρήσης</li>
+                                <li>Διάκριση από ανταγωνιστικά προϊόντα</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Τύποι Υλικών Συσκευασίας</h3>
+            <div class="packaging-types">
+                <div class="packaging-type">
+                    <h4>Χάρτινη Συσκευασία</h4>
+                    <p>Καρτόνια, χαρτόκουτα και χαρτί περιτυλίγματος για διάφορα προϊόντα.</p>
+                    <div class="examples">
+                        <h5>Πλεονεκτήματα:</h5>
+                        <ul>
+                            <li>Βιοαποδομήσιμη</li>
+                            <li>Ελαφριά και εύκαμπτη</li>
+                            <li>Απορροφητική</li>
+                            <li>Ανανεώσιμη πρώτη ύλη</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="packaging-type">
+                    <h4>Πλαστική Συσκευασία</h4>
+                    <p>Σακούλες, δοχεία, φιλμ και μπουκάλια από διάφορα είδη πλαστικών.</p>
+                    <div class="examples">
+                        <h5>Πλεονεκτήματα:</h5>
+                        <ul>
+                            <li>Ελαφριά και ανθεκτική</li>
+                            <li>Διαφανής ή ημιδιαφανής</li>
+                            <li>Καλή σφράγιση</li>
+                            <li>Ποικιλία σχημάτων και μεγεθών</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="packaging-type">
+                    <h4>Γυάλινη Συσκευασία</h4>
+                    <p>Μπουκάλια, βάζα και δοχεία από γυαλί για διάφορα προϊόντα.</p>
+                    <div class="examples">
+                        <h5>Πλεονεκτήματα:</h5>
+                        <ul>
+                            <li>Αδιάβροχη και αδιάφανη</li>
+                            <li>Αδρανής και μη αντιδραστική</li>
+                            <li>Μπορεί να ανακυκλωθεί άπειρες φορές</li>
+                            <li>Διατηρεί τη γεύση και τη μυρωδιά</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="packaging-type">
+                    <h4>Μεταλλική Συσκευασία</h4>
+                    <p>Κονσέρβες, δοχεία και σακούλες από αλουμίνιο και ατσάλι.</p>
+                    <div class="examples">
+                        <h5>Πλεονεκτήματα:</h5>
+                        <ul>
+                            <li>Αποτελεσματική προστασία από φως και οξυγόνο</li>
+                            <li>Μηχανική αντοχή</li>
+                            <li>Ανακυκλώσιμη</li>
+                            <li>Ικανότητα για στείρωση</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Σύγχρονες Τεχνολογίες Συσκευασίας</h3>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <h4>Ενεργή Συσκευασία</h4>
+                    <p>Συσκευασία που αλληλεπιδρά με το περιεχόμενο για τη βελτίωση της ποιότητας και της διάρκειας ζωής.</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>Έξυπνη Συσκευασία</h4>
+                    <p>Συσκευασία που παρέχει πληροφορίες για την κατάσταση και την ποιότητα του προϊόντος.</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>Βιοαποδομήσιμη Συσκευασία</h4>
+                    <p>Συσκευασία από βιοαποδομήσιμα υλικά που μειώνουν το περιβαλλοντικό αποτύπωμα.</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>Συσκευασία Διαλειτουργικότητας</h4>
+                    <p>Συσκευασία που επιτρέπει την εύκολη χρήση, επαναχρησιμοποίηση και ανακύκλωση.</p>
+                </div>
+            </div>
+            
+            <h3>Προτύπων και Κανονισμοί Συσκευασίας</h3>
+            <div class="case-study">
+                <h4>Ευρωπαϊκή Νομοθεσία για Συσκευασία Τροφίμων</h4>
+                <p>Ο κανονισμός (ΕΚ) αριθ. 1935/2004 και ο κανονισμός (ΕΚ) αριθ. 2023/2006 καθορίζουν τις απαιτήσεις για υλικά που έρχονται σε επαφή με τρόφιμα.</p>
+                
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <h4>Βασικές Απαιτήσεις</h4>
+                        <ul>
+                            <li>Ασφάλεια για την ανθρώπινη υγεία</li>
+                            <li>Αδράνεια έναντι των τροφίμων</li>
+                            <li>Συμμόρφωση με τους κανόνες καλής κατασκευαστικής πρακτικής</li>
+                            <li>Σαφής επισήμανση και πληροφόρηση</li>
+                        </ul>
+                    </div>
+                    <div class="benefit-item">
+                        <h4>Ειδικές Απαιτήσεις</h4>
+                        <ul>
+                            <li>Όρια μετανάστευσης συγκεκριμένων ουσιών</li>
+                            <li>Απαγορεύσεις για ορισμένες ουσίες</li>
+                            <li>Απαιτήσεις για επαναχρησιμοποιούμενη συσκευασία</li>
+                            <li>Απαιτήσεις για βιοαποδομήσιμη συσκευασία</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="btn btn-secondary" onclick="showPage(2)">← Προηγούμενη Σελίδα</button>
+                <button class="btn" onclick="showPage(4)">Επόμενη Σελίδα →</button>
+            </div>
+        </div>
+        
+        <!-- Σελίδα 4: Ποιότητα και Ασφάλεια -->
+        <div class="page" id="page4">
+            <h2>Σελίδα 4: Ποιότητα και Ασφάλεια στην Επεξεργασία</h2>
+            
+            <h3>Συστήματα Διαχείρισης Ποιότητας</h3>
+            <p>Η εφαρμογή συστημάτων διαχείρισης ποιότητας είναι απαραίτητη για τη διασφάλιση της ποιότητας και της ασφάλειας των επεξεργασμένων αγροτικών προϊόντων.</p>
+            
+            <div class="traceability-matrix">
+                <div class="traceability-category">
+                    <h4>HACCP (Ανάλυση Κινδύνων και Κρίσιμα Σημεία Ελέγχου)</h4>
+                    <ul>
+                        <li><strong>Ανάλυση Κινδύνων:</strong> Ταυτοποίηση βιολογικών, χημικών και φυσικών κινδύνων</li>
+                        <li><strong>Κρίσιμα Σημεία Ελέγχου (CCP):</strong> Σημεία όπου ο έλεγχος είναι απαραίτητος για την πρόληψη ή εξάλειψη κινδύνων</li>
+                        <li><strong>Κρίσιμα Όρια:</strong> Παραμέτρους που πρέπει να τηρούνται για κάθε CCP</li>
+                        <li><strong>Διαδικασίες Παρακολούθησης:</strong> Συνεχής παρακολούθηση των CCP</li>
+                        <li><strong>Διορθωτικές Ενέργειες:</strong> Ενέργειες που πρέπει να ληφθούν όταν παραβιάζονται τα κρίσιμα όρια</li>
+                        <li><strong>Διαδικασίες Επαλήθευσης:</strong> Επαλήθευση της αποτελεσματικότητας του συστήματος HACCP</li>
+                        <li><strong>Τήρηση Αρχείων:</strong> Τήρηση λεπτομερών αρχείων για όλα τα στάδια</li>
+                    </ul>
+                </div>
+                <div class="traceability-category">
+                    <h4>ISO 22000 (Σύστημα Διαχείρισης Ασφάλειας Τροφίμων)</h4>
+                    <ul>
+                        <li><strong>Προαπαιτούμενα Προγράμματα (PRP):</strong> Βασικές συνθήκες και δραστηριότητες για τη διατήρηση υγιεινής περιβάλλοντος</li>
+                        <li><strong>Προγράμματα Προαπαιτούμενων Δραστηριοτήτων (PRP):</strong> Ειδικά προγράμματα για συγκεκριμένους κινδύνους</li>
+                        <li><strong>Ανάπτυξη Σχεδίων HACCP:</strong> Εφαρμογή των αρχών HACCP</li>
+                        <li><strong>Διαδικασίες Ενημέρωσης:</strong> Ενημέρωση σχετικά με την ασφάλεια τροφίμων</li>
+                        <li><strong>Συνεχής Βελτίωση:</strong> Συνεχής βελτίωση του συστήματος διαχείρισης ασφάλειας τροφίμων</li>
+                        <li><strong>Αρχειοθέτηση και Τήρηση Αρχείων:</strong> Τήρηση λεπτομερών αρχείων για όλες τις διαδικασίες</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Παράμετροι Ποιότητας Επεξεργασμένων Προϊόντων</h3>
+            <div class="recall-stages">
+                <div class="recall-stage">
+                    <h4>Φυσικοχημικές Παράμετροι</h4>
+                    <ul>
+                        <li>Υγρασία και ενεργότητα νερού (aw)</li>
+                        <li>Οξύτητα και pH</li>
+                        <li>Βάρος και όγκος</li>
+                        <li>Χρώμα και εμφάνιση</li>
+                        <li>Υφή και σύνοψη</li>
+                        <li>Θρεπτική σύνθεση</li>
+                    </ul>
+                </div>
+                
+                <div class="recall-stage">
+                    <h4>Μικροβιολογικές Παράμετροι</h4>
+                    <ul>
+                        <li>Συνολικός αριθμός μικροοργανισμών</li>
+                        <li>Παθογόνοι μικροοργανισμοί</li>
+                        <li>Ενδείκτες υγιεινής</li>
+                        <li>Μικροοργανισμοί αλλοίωσης</li>
+                        <li>Τοξίνες μικροοργανισμών</li>
+                    </ul>
+                </div>
+                
+                <div class="recall-stage">
+                    <h4>Αισθητικές Παράμετροι</h4>
+                    <ul>
+                        <li>Γεύση και άρωμα</li>
+                        <li>Μυρωδιά</li>
+                        <li>Εμφάνιση και χρώμα</li>
+                        <li>Υφή και σύνοψη</li>
+                        <li>Απόχρωση και διαφάνεια</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Μέθοδοι Ελέγχου Ποιότητας</h3>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <h4>Σενσορική Αξιολόγηση</h4>
+                    <ul>
+                        <li>Οπτικός έλεγχος</li>
+                        <li>Έλεγχος οσμής</li>
+                        <li>Έλεγχος γεύσης</li>
+                        <li>Έλεγχος υφής</li>
+                    </ul>
+                </div>
+                <div class="benefit-item">
+                    <h4>Φυσικοχημική Ανάλυση</h4>
+                    <ul>
+                        <li>Προσδιορισμός υγρασίας</li>
+                        <li>Προσδιορισμός pH και οξύτητας</li>
+                        <li>Προσδιορισμός λιπαρών και πρωτεϊνών</li>
+                        <li>Προσδιορισμός σακχάρων και αλάτων</li>
+                    </ul>
+                </div>
+                <div class="benefit-item">
+                    <h4>Μικροβιολογικός Έλεγχος</h4>
+                    <ul>
+                        <li>Μέτρηση συνολικού αριθμού μικροοργανισμών</li>
+                        <li>Ανίχνευση παθογόνων μικροοργανισμών</li>
+                        <li>Προσδιορισμός ενδείκτων υγιεινής</li>
+                        <li>Ανίχνευση τοξινών</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Καλές Πρακτικές Επεξεργασίας</h3>
+            <div class="flow-diagram">
+                <h4>Βασικές Αρχές Καλών Πρακτικών Επεξεργασίας</h4>
+                
+                <div class="flow-step">
+                    <div class="step-number">1</div>
+                    <div class="step-text">
+                        <strong>Προετοιμασία Πρώτων Υλών</strong><br>
+                        Επιλογή, ταξινόμηση και καθαρισμός πρώτων υλών
+                    </div>
+                    <div class="flow-arrow">→</div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">2</div>
+                    <div class="step-text">
+                        <strong>Επεξεργασία</strong><br>
+                        Εφαρμογή κατάλληλων μεθόδων επεξεργασίας
+                    </div>
+                    <div class="flow-arrow">→</div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">3</div>
+                    <div class="step-text">
+                        <strong>Συσκευασία</strong><br>
+                        Συσκευασία σε κατάλληλα υλικά και συνθήκες
+                    </div>
+                    <div class="flow-arrow">→</div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">4</div>
+                    <div class="step-text">
+                        <strong>Αποθήκευση</strong><br>
+                        Αποθήκευση σε κατάλληλες συνθήκες θερμοκρασίας και υγρασίας
+                    </div>
+                    <div class="flow-arrow">→</div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">5</div>
+                    <div class="step-text">
+                        <strong>Μεταφορά</strong><br>
+                        Μεταφορά σε κατάλληλα οχήματα και συνθήκες
+                    </div>
+                    <div class="flow-arrow">→</div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">6</div>
+                    <div class="step-text">
+                        <strong>Πώληση</strong><br>
+                        Πώληση σε καταστήματα και καταναλωτές
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="btn btn-secondary" onclick="showPage(3)">← Προηγούμενη Σελίδα</button>
+                <button class="btn" onclick="showPage(5)">Επόμενη Σελίδα →</button>
+            </div>
+        </div>
+        
+        <!-- Σελίδα 5: Βιωσιμότητα και Καινοτομία -->
+        <div class="page" id="page5">
+            <h2>Σελίδα 5: Βιωσιμότητα και Καινοτομία στην Επεξεργασία</h2>
+            
+            <h3>Βιώσιμες Πρακτικές Επεξεργασίας</h3>
+            <p>Η βιωσιμότητα στην επεξεργασία αγροτικών προϊόντων περιλαμβάνει την εφαρμογή πρακτικών που μειώνουν το περιβαλλοντικό αποτύπωμα και προωθούν την οικονομική και κοινωνική βιωσιμότητα.</p>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-text">Μείωση Κατανάλωσης Ενέργειας</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-text">Διαχείριση Υδάτινων Πόρων</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-text">Μείωση Αποβλήτων</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-text">Ανακύκλωση και Επαναχρησιμοποίηση</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-text">Βιοαποδομήσιμα Υλικά</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-text">Αποτελεσματική Λογιστική</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">7</div>
+                    <div class="step-text">Κοινωνική Ευθύνη</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">8</div>
+                    <div class="step-text">Συνεχής Βελτίωση</div>
+                </div>
+            </div>
+            
+            <h3>Καινοτόμες Τεχνολογίες Επεξεργασίας</h3>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <h4>Επεξεργασία με Υπερκρίσιμο Διοξείδιο του Άνθρακα</h4>
+                    <ul>
+                        <li>Εκχύλιση χωρίς χρήση οργανικών διαλυτών</li>
+                        <li>Απομόνωση βιοενεργών συστατικών</li>
+                        <li>Αποκαφεΐνωση καφέ και τσαγιού</li>
+                        <li>Στείρωση τροφίμων</li>
+                    </ul>
+                </div>
+                <div class="benefit-item">
+                    <h4>Νανοτεχνολογία στην Επεξεργασία Τροφίμων</h4>
+                    <ul>
+                        <li>Νανοσυσκευασία για βελτιωμένη διαθεσιμότητα θρεπτικών συστατικών</li>
+                        <li>Νανοαισθητήρες για παρακολούθηση ποιότητας</li>
+                        <li>Νανοφίλτρα για απομόνωση συστατικών</li>
+                        <li>Νανοϋλικά για βελτιωμένη συσκευασία</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Προσθήκη Αξίας σε Παραπροϊόντα</h3>
+            <div class="recall-stages">
+                <div class="recall-stage">
+                    <h4>Παραπροϊόντα από Φυτά</h4>
+                    <ul>
+                        <li>Προσθήκη αξίας σε πλεονάσματα καλλιέργειας</li>
+                        <li>Αξιοποίηση φυτικών αποβλήτων για παραγωγή ενέργειας</li>
+                        <li>Εκχύλιση βιοενεργών συστατικών από φυτικά υπολείμματα</li>
+                        <li>Παραγωγή ζωοτροφών από φυτικά παραπροϊόντα</li>
+                    </ul>
+                </div>
+                
+                <div class="recall-stage">
+                    <h4>Παραπροϊόντα από Ζώα</h4>
+                    <ul>
+                        <li>Αξιοποίηση κρέατων χαμηλής αξίας για παραγωγή εμβολιασμένων προϊόντων</li>
+                        <li>Παραγωγή κολλαγόνου και ζελατίνης από οστά και δέρματα</li>
+                        <li>Αξιοποίηση εντόσθων για παραγωγή φαρμακευτικών προϊόντων</li>
+                        <li>Παραγωγή βιοκαυσίμων από λίπη και έλαια</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Μέτρα Βιωσιμότητας στην Επεξεργασία</h3>
+            <div class="traceability-matrix">
+                <div class="traceability-category">
+                    <h4>Μείωση Κατανάλωσης Ενέργειας</h4>
+                    <ul>
+                        <li>Χρήση ανανεώσιμων πηγών ενέργειας</li>
+                        <li>Βελτιστοποίηση διαδικασιών για μείωση ενεργειακής κατανάλωσης</li>
+                        <li>Ανακύκλωση θερμότητας από διεργασίες</li>
+                        <li>Χρήση ενεργειακά αποδοτικού εξοπλισμού</li>
+                    </ul>
+                    <p><strong>Συμβουλή:</strong> Η εφαρμογή συστημάτων διαχείρισης ενέργειας (ISO 50001) μπορεί να βοηθήσει στη μείωση της κατανάλωσης ενέργειας.</p>
+                </div>
+                <div class="traceability-category">
+                    <h4>Διαχείριση Υδάτινων Πόρων</h4>
+                    <ul>
+                        <li>Επανάχρηση νερού σε διαδικασίες</li>
+                        <li>Εγκατάσταση συστημάτων ανακύκλωσης νερού</li>
+                        <li>Βελτιστοποίηση διαδικασιών για μείωση κατανάλωσης νερού</li>
+                        <li>Επανάχρηση νερού για άρδευση ή καθαρισμό</li>
+                    </ul>
+                    <p><strong>Οφέλη:</strong> Η βελτιστοποίηση της χρήσης νερού οδηγεί σε μείωση του λειτουργικού κόστους και προστασία των υδάτινων πόρων.</p>
+                </div>
+            </div>
+            
+            <div class="case-study">
+                <h4>Συμπεράσματα</h4>
+                <p>Η επεξεργασία και συσκευασία αγροτικών προϊόντων αποτελούν ουσιαστικά στάδια της αγροδιατροφικής αλυσίδας που προσθέτουν αξία στα προϊόντα, διασφαλίζουν την ασφάλεια των τροφίμων και αυξάνουν τη διάρκεια ζωής τους.</p>
+                
+                <p>Οι σύγχρονες τεχνολογίες επεξεργασίας και συσκευασίας επιτρέπουν τη διατήρηση της ποιότητας και της θρεπτικής αξίας των προϊόντων, ενώ ταυτόχρονα μειώνουν τις απώλειες και τα απόβλητα. Η εφαρμογή συστημάτων διαχείρισης ποιότητας και ασφάλειας τροφίμων, όπως HACCP και ISO 22000, διασφαλίζει την παραγωγή ασφαλών και ποιοτικών προϊόντων.</p>
+                
+                <p>Η βιωσιμότητα στην επεξεργασία και συσκευασία αγροτικών προϊόντων αποτελεί κρίσιμο παράγοντα για την προώθηση της περιβαλλοντικής, οικονομικής και κοινωνικής βιωσιμότητας του αγροδιατροφικού τομέα. Οι καινοτόμες τεχνολογίες και πρακτικές προσφέρουν νέες δυνατότητες για τη βελτίωση της αποδοτικότητας, τη μείωση του περιβαλλοντικού αποτυπώματος και την προσθήκη αξίας στα αγροτικά προϊόντα.</p>
+            </div>
+            
+            <div class="navigation">
+                <button class="btn btn-secondary" onclick="showPage(4)">← Προηγούμενη Σελίδα</button>
+                <button class="btn" onclick="showPage(1)">Αρχική Σελίδα</button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Εκτεταμένη Διαδραστική Ανασκόπηση - Κεφάλαιο 3: Επεξεργασία και Συσκευασία Αγροτικών Προϊόντων</p>
+        </footer>
+    </div>
+
+    <script>
+        // Page navigation
+        function showPage(pageNumber) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(`page${pageNumber}`).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
